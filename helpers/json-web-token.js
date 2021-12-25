@@ -20,6 +20,16 @@ const generateJWT = (uid) => {
   });
 }
 
+const verifyJWT = (token = '') => {
+  try {
+    const { uid } = jwt.verify(token, process.env.PRIVATE_KEY);
+    return [true, uid]
+  } catch (error) {
+    return [false]
+  }
+}
+
 module.exports = {
-  generateJWT
+  generateJWT,
+  verifyJWT
 }
